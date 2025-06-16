@@ -10,6 +10,7 @@ export class CategoryService {
 
   private readonly urlApi: string = 'https://localhost:7048/api/v1/categories';
 
+  //Inyección de dependencias
   constructor(private http: HttpClient) { }
 
   //Listado de categorias 
