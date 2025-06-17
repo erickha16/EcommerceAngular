@@ -1,0 +1,47 @@
+<form [formGroup]="productForm" (ngSubmit)="updateProduct()" class="space-y-4 p-4 border rounded">
+    <label for="name" class="block font-semibold">Nombre:</label>
+    <input type="text" id="name" formControlName="name" class="border p-2 w-full">
+    <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="text-red-500">
+      <small *ngIf="productForm.get('name')?.errors?.['required']">El nombre es obligatorio.</small>
+      <small *ngIf="productForm.get('name')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</small>
+    </div>
+  
+    <label for="price" class="block font-semibold">Precio:</label>
+    <input type="number" id="price" formControlName="price" class="border p-2 w-full">
+    <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-red-500">
+      <small *ngIf="productForm.get('price')?.errors?.['required']">El precio es obligatorio.</small>
+      <small *ngIf="productForm.get('price')?.errors?.['min']">El precio debe ser mayor que 0.</small>
+    </div>
+
+    <!-- Categoría -->
+    <label for="category" class="block font-semibold">Categoría:</label>
+    <select id="category" formControlName="categoryId" class="border p-2 w-full">
+      <option value="" disabled selected>Seleccione una categoría</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+    <div *ngIf="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched">
+      <small *ngIf="productForm.get('categoryId')?.errors?.['required']" class="text-red-500">Debe seleccionar una categoría.</small>
+    </div>
+
+    <!-- Marca -->
+    <label for="brand" class="block font-semibold">Marca:</label>
+    <select id="brand" formControlName="brandId" class="border p-2 w-full">
+      <option value="" disabled selected>Seleccione una marca</option>
+      <option *ngFor="let brand of brands" [value]="brand.id">
+        {{ brand.name }}
+      </option>
+    </select>
+    <div *ngIf="productForm.get('brandId')?.invalid && productForm.get('brandId')?.touched">
+      <small *ngIf="productForm.get('brandId')?.errors?.['required']" class="text-red-500">Debe seleccionar una marca.</small>
+    </div>
+  
+    <div class="flex justify-end space-x-2">
+      <a routerLink="/products" class="bg-green-500 text-white p-2 rounded">Cancelar</a>
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+        Actualizar
+      </button>
+    </div>
+</form>
+  
