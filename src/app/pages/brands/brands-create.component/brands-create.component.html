@@ -1,1 +1,27 @@
-<h1>HOLA</h1>
+<form [formGroup]="brandForm" (ngSubmit)="enviarFormulario()" class="space-y-4 border rounded">
+    <label for="name" class="block font-semibold">Nombre:</label>
+    <input type="text" id="name" formControlName="name" class="border p-2 w-full">
+    <div *ngIf="brandForm.get('name')?.invalid && brandForm.get('name')?.touched">
+        <small *ngIf="brandForm.get('name')?.errors?.['required']" class="text-red-500">
+            El nombre es obligatorio.
+        </small>
+        <small *ngIf="brandForm.get('name')?.errors?.['minlenght']" class="text-red-500">
+            El nombre debe de tener al menos 3 caracteres
+        </small>
+    </div>
+
+    <label for="file" class="block font-semibold">Logo:</label>
+    <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" class="border p-2 w-full">
+    <div *ngIf="brandForm.get('file')?.invalid && brandForm.get('file')?.touched">
+        <small *ngIf="brandForm.get('file')?.errors?.['required']" class="text-red-500">
+            El logo es obligatorio
+        </small>
+    </div>
+
+    <div class="flex justify-end space-x-2">
+        <a routerLink="/brands" class="bg-green-500 text-white p-2 rounded">Cancelar</a>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+            Guardar
+        </button>
+    </div>
+</form>
