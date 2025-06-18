@@ -1,1 +1,19 @@
-<p>about works!</p>
+<div class="p-8 text-center">
+  <!-- Div con ngStyle -->
+  <div 
+    [ngStyle]="{
+      'background-color': backgroundColor,
+      'color': textColor,
+      'padding': '2rem',
+      'border-radius': '0.5rem',
+      'transition': 'all 0.3s ease'
+    }"
+    class="shadow-lg mb-6"
+  >
+    <p class="text-xl font-bold">¡Prueba de colores dinámicos!</p>
+  </div>
+
+  <button (click)="cambiarColor()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 hover:cursor-pointer text-white rounded-md transition-colors">
+    Cambiar Color
+  </button>
+</div>

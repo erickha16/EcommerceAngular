@@ -1,5 +1,5 @@
 <div class="container mx-auto p-6">
-    
+
     <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Productos</h2>
     <hr>
     <br>
@@ -7,22 +7,98 @@
     <br><br>
 
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+
         @for (product of products; track product.id){
-            <li
-                class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
-                    
-                    <p class="text-emerald-600 font-bold mt-2">${{ product.price.toFixed(2) }}</p>
+        <li class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
 
-                    <br>
-                    <a [routerLink]="['/products/update', product.id]" class="bg-blue-500 text-white p-2 rounded m-2">Actualizar</a>
-                    <a [routerLink]="['/products/delete', product.id]" class="bg-red-600 text-white p-2 rounded m-2">Eliminar</a>
-                    
-                </div>
-            </li>
+                <p class="text-emerald-600 font-bold mt-2">${{ product.price.toFixed(2) }}</p>
+
+                <br>
+                <a [routerLink]="['/products/update', product.id]"
+                    class="bg-blue-500 text-white p-2 rounded m-2">Actualizar</a>
+                <a [routerLink]="['/products/delete', product.id]"
+                    class="bg-red-600 text-white p-2 rounded m-2">Eliminar</a>
+
+            </div>
+        </li>
         }
-
     </ul>
 </div>
+
+<mat-slide-toggle [(ngModel)]="isChecked">Visualizar lista de productos {{isChecked}}</mat-slide-toggle>
+@if(isChecked){
+<!-- component -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- ====== Table Section Start -->
+<section class="bg-white py-20 lg:py-[120px]">
+    <div class="container">
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4">
+                <div class="max-w-full overflow-x-auto">
+                    <table class="table-auto w-full">
+                        <thead>
+                            <tr class="bg-primary text-center">
+                                <th
+                                    class="w-1/6min-w-[160px]text-lgfont-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent">
+                                    Id del producto
+                                </th>
+                                <th
+                                    class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                                    Nombre
+                                </th>
+                                <th
+                                    class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                                    Precio
+                                </th>
+                                <th
+                                    class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                                    Categoría
+                                </th>
+                                <th
+                                    class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                                    Marca
+                                </th>
+                                <th
+                                    class="w-1/6min-w-[160px]text-lgfont-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent">
+                                    Actualizar
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (product of products; track product.id){
+                            <tr>
+                                <td class=" text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
+                                    {{ product.id }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    {{ product.name }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">                                    $75.00
+                                    ${{ product.price.toFixed(2) }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    {{ product.category }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    {{ product.brand }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-r border-[#E8E8E8]">
+                                    <a [routerLink]="['/products/update', product.id]" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

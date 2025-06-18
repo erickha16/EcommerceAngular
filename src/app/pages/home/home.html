@@ -1,1 +1,24 @@
-<p>home works!</p>
+<div class="p-8 text-center space-y-4">
+  <!-- Botón con ngClass -->
+  <button
+    (click)="alternarEstado()"
+    [ngClass]="{
+      'bg-green-500 hover:bg-green-600': usuarioActivo,
+      'bg-red-500 hover:bg-red-600': !usuarioActivo
+    }"
+    class="px-6 py-3 text-white font-medium rounded-lg transition-colors shadow-md"
+  >
+    {{ usuarioActivo ? 'Usuario Activo ✅' : 'Usuario Inactivo ❌' }}
+  </button>
+
+  <!-- Mensaje adicional (opcional) -->
+  <p class="text-gray-700">
+    Estado actual: 
+    <span [ngClass]="{
+      'text-green-600 font-bold': usuarioActivo,
+      'text-red-600 font-bold': !usuarioActivo
+    }">
+      {{ usuarioActivo ? 'ACTIVO' : 'INACTIVO' }}
+    </span>
+  </p>
+</div>

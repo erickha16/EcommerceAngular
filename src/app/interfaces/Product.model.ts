@@ -5,5 +5,7 @@ export interface Product {
     active: boolean;
     highSystem: string;
     categoryId: number;
+    category: string;
     brandId: number;
+    brand: string;
 }
